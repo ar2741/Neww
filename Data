@@ -1,0 +1,7 @@
+const reportsData = [
+  { id: 1, name: "AML Report Jan", category: "AML Reports", fileType: "PDF", status: "Generated" },
+  { id: 2, name: "Risk Report Feb", category: "Risk Reports", fileType: "PDF", status: "Generated" },
+  { id: 3, name: "Customer Report Mar", category: "Customer Reports", fileType: "PDF", status: "Generated" }
+];
+
+export default reportsData;
