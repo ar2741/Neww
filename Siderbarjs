@@ -1,0 +1,20 @@
+import React from "react";
+import { Button, Form } from "react-bootstrap";
+import { FaList, FaCog, FaClock, FaChartBar } from "react-icons/fa";
+
+export default function Sidebar() {
+  return (
+    <>
+      <h6 className="text-success">Quick Access</h6>
+      <Button variant="outline-success" className="w-100 mb-2"><FaList /> All Reports</Button>
+      <Button variant="outline-primary" className="w-100 mb-2"><FaCog /> Settings</Button>
+      <Button variant="outline-warning" className="w-100 mb-2"><FaClock /> Recent</Button>
+      <Button variant="outline-info" className="w-100 mb-4"><FaChartBar /> Generate New</Button>
+
+      <h6 className="text-success">Categories</h6>
+      <Form.Check type="checkbox" label="AML Reports" />
+      <Form.Check type="checkbox" label="Risk Reports" />
+      <Form.Check type="checkbox" label="Customer Reports" />
+    </>
+  );
+}
