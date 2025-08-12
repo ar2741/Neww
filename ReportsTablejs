@@ -1,0 +1,36 @@
+import React from "react";
+import { Table, Button } from "react-bootstrap";
+import { FaEye, FaDownload } from "react-icons/fa";
+import reportsData from "../data/reportsData";
+
+export default function ReportsTable() {
+  return (
+    <Table striped bordered hover className="mt-3">
+      <thead style={{ backgroundColor: "#006747", color: "white" }}>
+        <tr>
+          <th>ID</th>
+          <th>Report Name</th>
+          <th>Category</th>
+          <th>File Type</th>
+          <th>Status</th>
+          <th>View/Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        {reportsData.map((report) => (
+          <tr key={report.id}>
+            <td>{report.id}</td>
+            <td>{report.name}</td>
+            <td>{report.category}</td>
+            <td>{report.fileType}</td>
+            <td>{report.status}</td>
+            <td>
+              <Button variant="outline-primary" size="sm" className="me-2"><FaEye /></Button>
+              <Button variant="outline-success" size="sm"><FaDownload /></Button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  );
+}
