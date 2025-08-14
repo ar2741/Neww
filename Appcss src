@@ -1,17 +1,17 @@
-body {
-  font-family: Arial, sans-serif;
+.bg-primary {
+  background-color: #0b3d91 !important; /* Standard Chartered Blue */
 }
 
-header {
-  background-color: #006747;
-  color: white;
+.btn-success {
+  background-color: #00b140 !important; /* Standard Chartered Green */
+  border: none;
 }
 
-.nav-tabs .nav-link.active {
-  background-color: #006747 !important;
-  color: white !important;
+.btn-success:hover {
+  background-color: #009a36 !important;
 }
 
-.nav-tabs .nav-link {
-  color: #006747;
+.nav-link.active {
+  border-left: 4px solid #00b140;
+  background-color: rgba(255, 255, 255, 0.1);
 }
