@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom"; // Correct import
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -9,8 +9,42 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
-    <Routes>
-      <Route path="/*" element={<App />} />
-    </Routes>
+    <App />
   </BrowserRouter>
 );
+
+
+
+
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+import ReportAccess from "./components/ReportAccess";
+import "./App.css";
+
+function App() {
+  return (
+    <div className="app-container" style={{ display: "flex" }}>
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main content area */}
+      <div style={{ flex: 1 }}>
+        {/* Header */}
+        <Header />
+
+        {/* Page Routes */}
+        <div style={{ padding: "20px" }}>
+          <Routes>
+            <Route path="/" element={<h2>Welcome to Dashboard</h2>} />
+            <Route path="/report-access" element={<ReportAccess />} />
+            {/* Add more routes here as needed */}
+          </Routes>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
