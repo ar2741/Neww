@@ -1,7 +1,14 @@
-const reportsData = [
-  { id: 1, name: "AML Report Jan", category: "AML Reports", fileType: "PDF", status: "Generated" },
-  { id: 2, name: "Risk Report Feb", category: "Risk Reports", fileType: "PDF", status: "Generated" },
-  { id: 3, name: "Customer Report Mar", category: "Customer Reports", fileType: "PDF", status: "Generated" }
-];
-
-export default reportsData;
+[
+  {
+    "username": "John Doe",
+    "createdAt": "2025-08-15 10:30 AM",
+    "report": "Sales Report",
+    "access": "Granted"
+  },
+  {
+    "username": "Jane Smith",
+    "createdAt": "2025-08-15 11:00 AM",
+    "report": "Finance Report",
+    "access": "Granted"
+  }
+]
