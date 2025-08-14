@@ -1,23 +1,11 @@
 import React from "react";
-import { Container, Button } from "react-bootstrap";
 
-export default function Header() {
+function Header() {
   return (
-    <header className="p-3">
-      <Container fluid className="d-flex justify-content-between align-items-center">
-        <div className="d-flex align-items-center">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Standard_Chartered.svg/2560px-Standard_Chartered.svg.png"
-            alt="Standard Chartered"
-            style={{ height: "40px", marginRight: "10px" }}
-          />
-          <h5 className="mb-0">REPORTS - USER</h5>
-        </div>
-        <div>
-          <Button variant="outline-light" size="sm" className="me-2">Username</Button>
-          <Button variant="danger" size="sm">Logout</Button>
-        </div>
-      </Container>
-    </header>
+    <div className="bg-white shadow-sm p-3">
+      <h4 className="m-0">Admin Dashboard</h4>
+    </div>
   );
 }
+
+export default Header;
