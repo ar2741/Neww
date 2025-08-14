@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom"; // Correct import
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
-  <Router>
-    <App />
-  </Router>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/*" element={<App />} />
+    </Routes>
+  </BrowserRouter>
 );
