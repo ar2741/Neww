@@ -1,34 +1,27 @@
 import React from "react";
-import Header from "./components/Header";
+import { Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
-import ReportsTable from "./components/ReportsTable";
-import Filters from "./components/Filters";
-import { Container, Row, Col, Nav } from "react-bootstrap";
+import Header from "./components/Header";
+import ReportAccess from "./components/ReportAccess";
 
-export default function App() {
+function App() {
   return (
-    <div style={{ backgroundColor: "#f8f9fa", minHeight: "100vh" }}>
-      <Header />
+    <div className="d-flex">
+      {/* Sidebar */}
+      <Sidebar />
 
-      <Container fluid className="mt-3">
-        <Row>
-          <Col md={2} className="bg-light p-3 border-end">
-            <Sidebar />
-          </Col>
-
-          <Col md={10} className="p-4">
-            <Nav variant="tabs" defaultActiveKey="dashboard">
-              <Nav.Item><Nav.Link eventKey="dashboard">Dashboard</Nav.Link></Nav.Item>
-              <Nav.Item><Nav.Link eventKey="mybookmarks">MyBookMarks</Nav.Link></Nav.Item>
-              <Nav.Item><Nav.Link eventKey="recent">Recent</Nav.Link></Nav.Item>
-              <Nav.Item><Nav.Link eventKey="profile">Profile</Nav.Link></Nav.Item>
-            </Nav>
-
-            <Filters />
-            <ReportsTable />
-          </Col>
-        </Row>
-      </Container>
+      {/* Main content */}
+      <div className="flex-grow-1">
+        <Header />
+        <div className="p-4 bg-light" style={{ minHeight: "100vh" }}>
+          <Routes>
+            <Route path="/" element={<h2>Dashboard Placeholder</h2>} />
+            <Route path="/report-access" element={<ReportAccess />} />
+          </Routes>
+        </div>
+      </div>
     </div>
   );
 }
+
+export default App;
