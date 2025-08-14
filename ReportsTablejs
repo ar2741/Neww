@@ -1,36 +1,97 @@
-import React from "react";
-import { Table, Button } from "react-bootstrap";
-import { FaEye, FaDownload } from "react-icons/fa";
-import reportsData from "../data/reportsData";
+import React, { useState } from "react";
+import { Table, Button, Form } from "react-bootstrap";
+import sampleData from "../data/sampleData.json";
 
-export default function ReportsTable() {
+function ReportAccess() {
+  const [selectedUser, setSelectedUser] = useState("");
+  const [selectedReport, setSelectedReport] = useState("");
+  const [accessList, setAccessList] = useState(sampleData);
+
+  const users = ["John Doe", "Jane Smith", "Robert Brown"];
+  const reports = ["Sales Report", "Finance Report", "Customer Report"];
+
+  const assignAccess = () => {
+    if (selectedUser && selectedReport) {
+      setAccessList([
+        ...accessList,
+        {
+          username: selectedUser,
+          createdAt: new Date().toLocaleString(),
+          report: selectedReport,
+          access: "Granted",
+        },
+      ]);
+      setSelectedUser("");
+      setSelectedReport("");
+    }
+  };
+
   return (
-    <Table striped bordered hover className="mt-3">
-      <thead style={{ backgroundColor: "#006747", color: "white" }}>
-        <tr>
-          <th>ID</th>
-          <th>Report Name</th>
-          <th>Category</th>
-          <th>File Type</th>
-          <th>Status</th>
-          <th>View/Download</th>
-        </tr>
-      </thead>
-      <tbody>
-        {reportsData.map((report) => (
-          <tr key={report.id}>
-            <td>{report.id}</td>
-            <td>{report.name}</td>
-            <td>{report.category}</td>
-            <td>{report.fileType}</td>
-            <td>{report.status}</td>
-            <td>
-              <Button variant="outline-primary" size="sm" className="me-2"><FaEye /></Button>
-              <Button variant="outline-success" size="sm"><FaDownload /></Button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
+    <div>
+      <h2 className="mb-4">Report Access</h2>
+      <div className="bg-white p-4 rounded shadow-sm mb-4">
+        <Form>
+          <Form.Group className="mb-3">
+            <Form.Label>Select User</Form.Label>
+            <Form.Select
+              value={selectedUser}
+              onChange={(e) => setSelectedUser(e.target.value)}
+            >
+              <option value="">Select User</option>
+              {users.map((u, i) => (
+                <option key={i} value={u}>
+                  {u}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Select Report</Form.Label>
+            <Form.Select
+              value={selectedReport}
+              onChange={(e) => setSelectedReport(e.target.value)}
+            >
+              <option value="">Select Report</option>
+              {reports.map((r, i) => (
+                <option key={i} value={r}>
+                  {r}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+
+          <Button variant="success" onClick={assignAccess}>
+            Assign Access
+          </Button>
+        </Form>
+      </div>
+
+      <div className="bg-white p-4 rounded shadow-sm">
+        <h5>Access List</h5>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Created At</th>
+              <th>Report</th>
+              <th>Access</th>
+            </tr>
+          </thead>
+          <tbody>
+            {accessList.map((a, i) => (
+              <tr key={i}>
+                <td>{a.username}</td>
+                <td>{a.createdAt}</td>
+                <td>{a.report}</td>
+                <td>{a.access}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    </div>
   );
 }
+
+export default ReportAccess;
