@@ -1,20 +1,46 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
-import { FaList, FaCog, FaClock, FaChartBar } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+import logo from "../../public/logo.png"; // Will not work directly; use public path
 
-export default function Sidebar() {
+function Sidebar() {
+  const location = useLocation();
+
   return (
-    <>
-      <h6 className="text-success">Quick Access</h6>
-      <Button variant="outline-success" className="w-100 mb-2"><FaList /> All Reports</Button>
-      <Button variant="outline-primary" className="w-100 mb-2"><FaCog /> Settings</Button>
-      <Button variant="outline-warning" className="w-100 mb-2"><FaClock /> Recent</Button>
-      <Button variant="outline-info" className="w-100 mb-4"><FaChartBar /> Generate New</Button>
-
-      <h6 className="text-success">Categories</h6>
-      <Form.Check type="checkbox" label="AML Reports" />
-      <Form.Check type="checkbox" label="Risk Reports" />
-      <Form.Check type="checkbox" label="Customer Reports" />
-    </>
+    <div
+      className="bg-primary text-white p-3"
+      style={{ width: "240px", minHeight: "100vh" }}
+    >
+      <div className="text-center mb-4">
+        <img
+          src="/logo.png"
+          alt="Standard Chartered"
+          style={{ width: "150px" }}
+        />
+      </div>
+      <ul className="nav flex-column">
+        <li className="nav-item">
+          <Link
+            className={`nav-link text-white ${
+              location.pathname === "/" ? "active fw-bold" : ""
+            }`}
+            to="/"
+          >
+            Dashboard
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className={`nav-link text-white ${
+              location.pathname === "/report-access" ? "active fw-bold" : ""
+            }`}
+            to="/report-access"
+          >
+            Report Access
+          </Link>
+        </li>
+      </ul>
+    </div>
   );
 }
+
+export default Sidebar;
