@@ -1,21 +1,35 @@
 import React from "react";
-import logo from "../logo.png";
 
-function Header() {
+export default function Header() {
   return (
-    <div className="top-banner">
-      <img src={logo} alt="Logo" className="logo-img" />
-      <h2 className="title">USER DASHBOARD</h2>
-      <div className="search-section">
-        <input type="text" placeholder="Search reports..." />
-        <button className="search-btn">🔍</button>
+    <header className="sc-header">
+      <div className="container-fluid py-2">
+        <div className="d-flex align-items-center gap-3">
+          <img src="/logo.png" alt="Standard Chartered" className="sc-logo" />
+          <h1 className="h5 m-0 fw-semibold text-white">USER DASHBOARD</h1>
+
+          <div className="ms-auto d-flex align-items-center gap-2">
+            <div className="input-group" style={{ maxWidth: 320 }}>
+              <input
+                className="form-control form-control-sm search-input"
+                placeholder="Search reports..."
+                aria-label="Search"
+              />
+              <button className="btn btn-light btn-sm">
+                <i className="bi bi-search" />
+              </button>
+            </div>
+
+            <span className="d-none d-sm-inline text-white-50">
+              <i className="bi bi-person-circle me-1" />
+              Username
+            </span>
+            <button className="btn btn-outline-light btn-sm">
+              Logout
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="user-section">
-        <span>Username</span>
-        <button className="logout-btn">Logout</button>
-      </div>
-    </div>
+    </header>
   );
 }
-
-export default Header;
