@@ -1,0 +1,64 @@
+import React, { useState, useMemo } from "react";
+import Filters from "../components/Filters";
+import ReportsTable from "../components/ReportsTable";
+import reportsSeed from "../data/reportsData";
+import Sidebar from "../components/Sidebar";
+
+export default function Reports() {
+  const [filters, setFilters] = useState({
+    from: "",
+    to: "",
+    category: "",
+    status: "",
+    q: "",
+    categoriesSelected: { aml: false, risk: false, customer: false },
+  });
+
+  const onToggleCategory = (key) =>
+    setFilters((f) => ({
+      ...f,
+      categoriesSelected: { ...f.categoriesSelected, [key]: !f.categoriesSelected[key] },
+    }));
+
+  const onFilterChange = (payload) =>
+    setFilters((f) => ({ ...f, ...payload }));
+
+  const filteredReports = useMemo(() => {
+    const { from, to, category, status, q, categoriesSelected } = filters;
+    const catsChosen = Object.entries(categoriesSelected)
+      .filter(([, v]) => v)
+      .map(([k]) => k);
+
+    return reportsSeed.filter((r) => {
+      const inCategory = category ? r.category === category : true;
+      const inStatus = status ? r.status === status : true;
+      const inSearch = q
+        ? [r.name, r.category, r.id.toString()].join(" ").toLowerCase().includes(q.toLowerCase())
+        : true;
+
+      const inSideCats = catsChosen.length
+        ? catsChosen.includes(r.sideCategoryKey)
+        : true;
+
+      const inRange =
+        (!from || r.month >= from) &&
+        (!to || r.month <= to);
+
+      return inCategory && inStatus && inSearch && inSideCats && inRange;
+    });
+  }, [filters]);
+
+  return (
+    <div className="card shadow-sm border-0">
+      <div className="card-body">
+        <Filters
+          filters={filters}
+          onChange={onFilterChange}
+          onGenerateNew={() => alert("Generate New clicked")}
+          onBookmarkSelected={() => alert("Bookmark Selected clicked")}
+        />
+        <ReportsTable rows={filteredReports} />
+      </div>
+    </div>
+  );
+}
