@@ -1,62 +1,30 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
-export default function Sidebar({ categoriesSelected, onToggleCategory }) {
+export default function Sidebar() {
   return (
-    <div className="sc-sidebar">
-      <div className="mb-3">
-        <div className="sc-section-title">Quick Access</div>
-        <div className="list-group list-quick">
-          <NavLink to="/reports" className="list-group-item list-group-item-action">
-            <i className="bi bi-files me-2" /> All Reports
-          </NavLink>
-          <button className="list-group-item list-group-item-action">
-            <i className="bi bi-gear me-2" /> Settings
-          </button>
-          <NavLink to="/dashboard" className="list-group-item list-group-item-action">
-            <i className="bi bi-clock-history me-2" /> Recent
-          </NavLink>
-          <NavLink to="/reports" className="list-group-item list-group-item-action">
-            <i className="bi bi-plus-square me-2" /> Generate New
-          </NavLink>
+    <div className="sidebar-panel p-3" style={{ width: "220px" }}>
+      <h6>Quick Access</h6>
+      <button className="quick-btn">All Reports</button>
+      <button className="quick-btn">Settings</button>
+      <button className="quick-btn">Recent</button>
+      <button className="quick-btn">Generate New</button>
+
+      <div className="mt-4">
+        <h6>Categories</h6>
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" id="c1" />
+          <label htmlFor="c1" className="form-check-label">AML Reports</label>
+        </div>
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" id="c2" />
+          <label htmlFor="c2" className="form-check-label">Risk Reports</label>
+        </div>
+        <div className="form-check">
+          <input className="form-check-input" type="checkbox" id="c3" />
+          <label htmlFor="c3" className="form-check-label">Customer Reports</label>
         </div>
       </div>
-
-      {onToggleCategory && (
-        <div>
-          <div className="sc-section-title">Categories</div>
-          <div className="form-check mb-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="aml"
-              checked={categoriesSelected?.aml || false}
-              onChange={() => onToggleCategory("aml")}
-            />
-            <label className="form-check-label" htmlFor="aml">AML Reports</label>
-          </div>
-          <div className="form-check mb-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="risk"
-              checked={categoriesSelected?.risk || false}
-              onChange={() => onToggleCategory("risk")}
-            />
-            <label className="form-check-label" htmlFor="risk">Risk Reports</label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="customer"
-              checked={categoriesSelected?.customer || false}
-              onChange={() => onToggleCategory("customer")}
-            />
-            <label className="form-check-label" htmlFor="customer">Customer Reports</label>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
+
