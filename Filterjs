@@ -1,33 +1,18 @@
 import React from "react";
-import { Row, Col, Form, Button } from "react-bootstrap";
 
-export default function Filters() {
+function Dashboard() {
   return (
-    <>
-      <Row className="mt-3 g-2">
-        <Col md={3}><Form.Control type="text" placeholder="MM/YY → MM/YY" /></Col>
-        <Col md={3}>
-          <Form.Select>
-            <option>Category</option>
-            <option>AML Reports</option>
-            <option>Risk Reports</option>
-            <option>Customer Reports</option>
-          </Form.Select>
-        </Col>
-        <Col md={3}>
-          <Form.Select>
-            <option>Status</option>
-            <option>Generated</option>
-            <option>Pending</option>
-          </Form.Select>
-        </Col>
-        <Col md={3}><Form.Control type="text" placeholder="Search Report" /></Col>
-      </Row>
-
-      <div className="d-flex justify-content-between align-items-center mt-3">
-        <Button variant="success">Generate New</Button>
-        <Button variant="outline-warning">Bookmark Selected</Button>
+    <div>
+      <div className="placeholder-box">
+        <h4>📅 Latest Report Notifications</h4>
+        <p>No new notifications.</p>
       </div>
-    </>
+      <div className="placeholder-box">
+        <h4>🔖 Recently Accessed Reports</h4>
+        <p>No recent reports opened.</p>
+      </div>
+    </div>
   );
 }
+
+export default Dashboard;
