@@ -1,26 +1,27 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./components/Dashboard";
 import ReportAccess from "./components/ReportAccess";
+import "./App.css";
 
 function App() {
   return (
-    <div className="d-flex">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main content */}
-      <div className="flex-grow-1">
+    <Router>
+      <div className="app-container">
         <Header />
-        <div className="p-4 bg-light" style={{ minHeight: "100vh" }}>
-          <Routes>
-            <Route path="/" element={<h2>Dashboard Placeholder</h2>} />
-            <Route path="/report-access" element={<ReportAccess />} />
-          </Routes>
+        <div className="main-layout">
+          <Sidebar />
+          <div className="content-panel">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/reports" element={<ReportAccess />} />
+            </Routes>
+          </div>
         </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
