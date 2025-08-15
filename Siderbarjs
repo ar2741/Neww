@@ -1,44 +1,21 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import logo from "../../public/logo.png"; // Will not work directly; use public path
+import { Link } from "react-router-dom";
 
 function Sidebar() {
-  const location = useLocation();
-
   return (
-    <div
-      className="bg-primary text-white p-3"
-      style={{ width: "240px", minHeight: "100vh" }}
-    >
-      <div className="text-center mb-4">
-        <img
-          src="/logo.png"
-          alt="Standard Chartered"
-          style={{ width: "150px" }}
-        />
+    <div className="sidebar-panel">
+      <div className="quick-access">
+        <Link to="/reports" className="quick-btn">All Reports</Link>
+        <button className="quick-btn">Settings</button>
+        <button className="quick-btn">Recent</button>
+        <button className="quick-btn">Generate New</button>
       </div>
-      <ul className="nav flex-column">
-        <li className="nav-item">
-          <Link
-            className={`nav-link text-white ${
-              location.pathname === "/" ? "active fw-bold" : ""
-            }`}
-            to="/"
-          >
-            Dashboard
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            className={`nav-link text-white ${
-              location.pathname === "/report-access" ? "active fw-bold" : ""
-            }`}
-            to="/report-access"
-          >
-            Report Access
-          </Link>
-        </li>
-      </ul>
+      <div className="categories">
+        <p>Categories</p>
+        <button className="quick-btn">AML Reports</button>
+        <button className="quick-btn">Risk Reports</button>
+        <button className="quick-btn">Customer Reports</button>
+      </div>
     </div>
   );
 }
