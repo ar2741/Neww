@@ -1,23 +1,62 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-function Sidebar() {
+export default function Sidebar({ categoriesSelected, onToggleCategory }) {
   return (
-    <div className="sidebar-panel">
-      <div className="quick-access">
-        <Link to="/reports" className="quick-btn">All Reports</Link>
-        <button className="quick-btn">Settings</button>
-        <button className="quick-btn">Recent</button>
-        <button className="quick-btn">Generate New</button>
+    <div className="sc-sidebar">
+      <div className="mb-3">
+        <div className="sc-section-title">Quick Access</div>
+        <div className="list-group list-quick">
+          <NavLink to="/reports" className="list-group-item list-group-item-action">
+            <i className="bi bi-files me-2" /> All Reports
+          </NavLink>
+          <button className="list-group-item list-group-item-action">
+            <i className="bi bi-gear me-2" /> Settings
+          </button>
+          <NavLink to="/dashboard" className="list-group-item list-group-item-action">
+            <i className="bi bi-clock-history me-2" /> Recent
+          </NavLink>
+          <NavLink to="/reports" className="list-group-item list-group-item-action">
+            <i className="bi bi-plus-square me-2" /> Generate New
+          </NavLink>
+        </div>
       </div>
-      <div className="categories">
-        <p>Categories</p>
-        <button className="quick-btn">AML Reports</button>
-        <button className="quick-btn">Risk Reports</button>
-        <button className="quick-btn">Customer Reports</button>
-      </div>
+
+      {onToggleCategory && (
+        <div>
+          <div className="sc-section-title">Categories</div>
+          <div className="form-check mb-2">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="aml"
+              checked={categoriesSelected?.aml || false}
+              onChange={() => onToggleCategory("aml")}
+            />
+            <label className="form-check-label" htmlFor="aml">AML Reports</label>
+          </div>
+          <div className="form-check mb-2">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="risk"
+              checked={categoriesSelected?.risk || false}
+              onChange={() => onToggleCategory("risk")}
+            />
+            <label className="form-check-label" htmlFor="risk">Risk Reports</label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="customer"
+              checked={categoriesSelected?.customer || false}
+              onChange={() => onToggleCategory("customer")}
+            />
+            <label className="form-check-label" htmlFor="customer">Customer Reports</label>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-
-export default Sidebar;
