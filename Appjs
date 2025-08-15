@@ -1,28 +1,14 @@
+// src/App.js
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import Dashboard from "./components/Dashboard";
-import ReportAccess from "./components/ReportAccess";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ReportsPage from "./pages/ReportsPage";
 
-function App() {
+export default function App() {
   return (
-    <Router>
-      <div className="app-container">
-        <Header />
-        <div className="main-layout">
-          <Sidebar />
-          <div className="content-panel">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/reports" element={<ReportAccess />} />
-            </Routes>
-          </div>
-        </div>
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ReportsPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
